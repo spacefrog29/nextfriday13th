@@ -1,170 +1,139 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-  color: #fff;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.container {
-  max-width: 600px;
-  width: 100%;
-}
-
-header {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-header h1 {
-  font-size: 3rem;
-  font-weight: 700;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-  margin-bottom: 0.5rem;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.today-banner {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
-  padding: 2rem;
-  border-radius: 16px;
-  text-align: center;
-  box-shadow: 0 8px 32px rgba(255, 107, 107, 0.3);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
+@layer base {
+  * {
+    @apply m-0 p-0 box-border;
   }
-  50% {
-    transform: scale(1.02);
+
+  body {
+    @apply min-h-screen flex justify-center items-center p-5;
+    @apply bg-gradient-to-br from-spooky-darkest via-spooky-dark to-spooky-primary;
+    @apply text-spooky-ghost;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   }
 }
 
-.today-banner h2 {
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
+@layer components {
+  .container {
+    @apply max-w-2xl w-full;
+  }
 
-.current-date {
-  font-size: 1.3rem;
-  font-weight: 500;
-  opacity: 0.95;
-}
+  header {
+    @apply text-center mb-8;
+  }
 
-.info-card, .stats-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 2rem;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-}
-
-.info-card h3, .stats-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-  color: #a8dadc;
-  font-weight: 600;
-}
-
-.next-date {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: #f1faee;
-}
-
-.days-away {
-  font-size: 1.1rem;
-  color: #a8dadc;
-  font-weight: 500;
-}
-
-.stat-number {
-  font-size: 4rem;
-  font-weight: 700;
-  text-align: center;
-  color: #f1faee;
-  line-height: 1;
-  margin-bottom: 0.5rem;
-}
-
-.stat-label {
-  text-align: center;
-  font-size: 1.1rem;
-  color: #a8dadc;
-  margin-bottom: 1.5rem;
-}
-
-.year-dates {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  justify-content: center;
-}
-
-.year-date {
-  background: rgba(255, 255, 255, 0.15);
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.fun-fact {
-  background: rgba(168, 218, 220, 0.1);
-  padding: 1.5rem;
-  border-radius: 12px;
-  border-left: 4px solid #a8dadc;
-  font-style: italic;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-footer {
-  text-align: center;
-  margin-top: 2rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  opacity: 0.7;
-  font-size: 0.9rem;
-}
-
-@media (max-width: 640px) {
   header h1 {
-    font-size: 2.2rem;
+    @apply text-5xl font-bold mb-2;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5), 0 0 20px rgba(123, 45, 141, 0.3);
+  }
+
+  main {
+    @apply flex flex-col gap-6;
+  }
+
+  .today-banner {
+    @apply bg-gradient-to-br from-spooky-blood to-spooky-blood-light;
+    @apply p-8 rounded-2xl text-center;
+    @apply shadow-2xl animate-pulse-slow;
+    box-shadow: 0 10px 40px rgba(139, 0, 0, 0.5), 0 0 60px rgba(139, 0, 0, 0.3);
   }
 
   .today-banner h2 {
-    font-size: 1.4rem;
+    @apply text-3xl mb-2 font-bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .current-date {
+    @apply text-xl font-medium opacity-95;
+  }
+
+  .info-card, .stats-card {
+    @apply bg-spooky-primary/40 backdrop-blur-lg;
+    @apply p-8 rounded-2xl;
+    @apply border border-spooky-purple/30;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px rgba(123, 45, 141, 0.2);
+    @apply transition-all duration-300 hover:border-spooky-purple/50;
+  }
+
+  .info-card:hover, .stats-card:hover {
+    @apply animate-spooky-glow;
+  }
+
+  .info-card h3, .stats-card h3 {
+    @apply text-xl mb-4 text-spooky-orange-light font-semibold;
+    text-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
   }
 
   .next-date {
-    font-size: 1.5rem;
+    @apply text-3xl font-bold mb-2 text-spooky-moon;
+    text-shadow: 0 0 15px rgba(244, 241, 222, 0.4);
+  }
+
+  .days-away {
+    @apply text-lg text-spooky-orange font-medium;
   }
 
   .stat-number {
-    font-size: 3rem;
+    @apply text-7xl font-bold text-center text-spooky-moon leading-none mb-2;
+    text-shadow: 0 0 30px rgba(244, 241, 222, 0.5);
+    @apply animate-float;
   }
 
-  .info-card, .stats-card, .today-banner {
-    padding: 1.5rem;
+  .stat-label {
+    @apply text-center text-lg text-spooky-orange mb-6;
+  }
+
+  .year-dates {
+    @apply flex flex-wrap gap-2 justify-center;
+  }
+
+  .year-date {
+    @apply bg-spooky-purple/30 backdrop-blur-sm;
+    @apply px-4 py-2 rounded-lg;
+    @apply text-sm font-medium;
+    @apply border border-spooky-purple/40;
+    @apply transition-all duration-200;
+    @apply hover:bg-spooky-purple/50 hover:scale-105;
+  }
+
+  .fun-fact {
+    @apply bg-spooky-secondary/30 backdrop-blur-sm;
+    @apply p-6 rounded-xl;
+    @apply border-l-4 border-spooky-orange;
+    @apply italic text-sm leading-relaxed;
+    @apply text-spooky-ghost/90;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  footer {
+    @apply text-center mt-8 pt-8;
+    @apply border-t border-spooky-ghost/10;
+    @apply opacity-70 text-sm;
+  }
+}
+
+@layer utilities {
+  @media (max-width: 640px) {
+    header h1 {
+      @apply text-4xl;
+    }
+
+    .today-banner h2 {
+      @apply text-2xl;
+    }
+
+    .next-date {
+      @apply text-2xl;
+    }
+
+    .stat-number {
+      @apply text-5xl;
+    }
+
+    .info-card, .stats-card, .today-banner {
+      @apply p-6;
+    }
   }
 }
