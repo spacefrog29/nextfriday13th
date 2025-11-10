@@ -34,7 +34,7 @@
     </main>
 
     <footer>
-      <p>nextfriday13th.com</p>
+      <p>www.nextfriday13th.com</p>
     </footer>
   </div>
 </template>
