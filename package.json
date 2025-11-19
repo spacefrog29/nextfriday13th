@@ -1,7 +1,19 @@
 {
   "name": "nextfriday13th",
   "version": "1.0.0",
+  "description": "A Vue.js application that shows when the next Friday the 13th will occur.",
+  "homepage": "https://github.com/spacefrog29/nextfriday13th#readme",
+  "bugs": {
+    "url": "https://github.com/spacefrog29/nextfriday13th/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spacefrog29/nextfriday13th.git"
+  },
+  "license": "ISC",
+  "author": "",
   "type": "module",
+  "main": "postcss.config.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

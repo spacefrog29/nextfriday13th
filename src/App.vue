@@ -1,17 +1,17 @@
 <template>
   <div class="container">
     <header>
-      <h1>🗓️ Friday the 13th</h1>
+      <h1>Friday 13th</h1>
     </header>
 
     <main>
       <div v-if="isTodayFriday13th" class="today-banner">
-        <h2>🎃 TODAY IS FRIDAY THE 13TH! 🎃</h2>
+        <h2>🎃 TODAY IS FRIDAY 13TH! 🎃</h2>
         <p class="current-date">{{ formatDate(today) }}</p>
       </div>
 
       <div class="info-card">
-        <h3>{{ isTodayFriday13th ? 'Next Friday the 13th:' : 'Next Friday the 13th is:' }}</h3>
+        <h3>{{ isTodayFriday13th ? 'Next Friday 13th:' : 'Next Friday 13th is:' }}</h3>
         <p class="next-date">{{ formatDate(nextFriday13th) }}</p>
         <p class="days-away">{{ daysUntilNext }} days away</p>
       </div>
@@ -19,7 +19,7 @@
       <div class="stats-card">
         <h3>This Year ({{ currentYear }})</h3>
         <p class="stat-number">{{ friday13thsThisYear.length }}</p>
-        <p class="stat-label">Friday the 13th{{ friday13thsThisYear.length !== 1 ? 's' : '' }}</p>
+        <p class="stat-label">Friday 13th{{ friday13thsThisYear.length !== 1 ? 's' : '' }}</p>
 
         <div v-if="friday13thsThisYear.length > 0" class="year-dates">
           <div v-for="date in friday13thsThisYear" :key="date.getTime()" class="year-date">
@@ -45,17 +45,17 @@ import { ref, computed, onMounted } from 'vue'
 const today = ref(new Date())
 const currentYear = ref(new Date().getFullYear())
 
-// Check if a date is Friday the 13th
+// Check if a date is Friday 13th
 const isFriday13th = (date) => {
   return date.getDay() === 5 && date.getDate() === 13
 }
 
-// Check if today is Friday the 13th
+// Check if today is Friday 13th
 const isTodayFriday13th = computed(() => {
   return isFriday13th(today.value)
 })
 
-// Find the next Friday the 13th
+// Find the next Friday 13th
 const findNextFriday13th = (startDate) => {
   const date = new Date(startDate)
   date.setDate(date.getDate() + 1) // Start from tomorrow
@@ -76,19 +76,19 @@ const findNextFriday13th = (startDate) => {
   return null
 }
 
-// Get next Friday the 13th
+// Get next Friday 13th
 const nextFriday13th = computed(() => {
   return findNextFriday13th(today.value)
 })
 
-// Calculate days until next Friday the 13th
+// Calculate days until next Friday 13th
 const daysUntilNext = computed(() => {
   if (!nextFriday13th.value) return 0
   const diff = nextFriday13th.value - today.value
   return Math.ceil(diff / (1000 * 60 * 60 * 24))
 })
 
-// Find all Friday the 13ths in a given year
+// Find all Friday 13ths in a given year
 const findAllFriday13thsInYear = (year) => {
   const dates = []
   for (let month = 0; month < 12; month++) {
@@ -100,7 +100,7 @@ const findAllFriday13thsInYear = (year) => {
   return dates
 }
 
-// Get all Friday the 13ths in current year
+// Get all Friday 13ths in current year
 const friday13thsThisYear = computed(() => {
   return findAllFriday13thsInYear(currentYear.value)
 })
@@ -130,11 +130,11 @@ const formatDateShort = (date) => {
 // Fun fact
 const funFact = computed(() => {
   const facts = [
-    "Fear of Friday the 13th is called paraskevidekatriaphobia!",
-    "The longest period between two Friday the 13ths is 14 months.",
-    "There is at least one Friday the 13th every year.",
-    "The most Friday the 13ths that can occur in a single year is three.",
-    "Friday the 13th occurs at least once every calendar year and up to three times a year."
+    "Fear of Friday 13th is called paraskevidekatriaphobia!",
+    "The longest period between two Friday 13ths is 14 months.",
+    "There is at least one Friday 13th every year.",
+    "The most Friday 13ths that can occur in a single year is three.",
+    "Friday 13th occurs at least once every calendar year and up to three times a year."
   ]
   const factIndex = today.value.getMonth() % facts.length
   return facts[factIndex]
