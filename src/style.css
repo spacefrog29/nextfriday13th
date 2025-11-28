@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&family=Rubik+Mono+One&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,81 +10,209 @@
   }
 
   body {
-    @apply min-h-screen flex justify-center items-center p-5;
-    @apply bg-gradient-to-br from-spooky-darkest via-spooky-dark to-spooky-primary;
-    @apply text-spooky-ghost;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    @apply min-h-screen relative overflow-x-hidden;
+    @apply font-typewriter text-vintage-smoke;
+
+    /* Aged paper background with texture */
+    background-color: #f4e8d0;
+    background-image:
+      /* Paper texture noise */
+      url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxwYXRoIGQ9Ik0wIDBoMzAwdjMwMEgweiIgZmlsdGVyPSJ1cmwoI2EpIiBvcGFjaXR5PSIuMDUiLz48L3N2Zz4='),
+      /* Subtle vignette */
+      radial-gradient(circle at center, transparent 0%, transparent 60%, rgba(10,10,10,0.3) 100%);
+  }
+
+  /* Film grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+
+    /* Animated grain */
+    background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9IjAuOSIgbnVtT2N0YXZlcz0iNCIgc3RpdGNoVGlsZXM9InN0aXRjaCIvPjxmZUNvbG9yTWF0cml4IHR5cGU9InNhdHVyYXRlIiB2YWx1ZXM9IjAiLz48L2ZpbHRlcj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWx0ZXI9InVybCgjYSkiIG9wYWNpdHk9Ii4xNSIvPjwvc3ZnPg==');
+    opacity: 0.15;
+    animation: grain 0.3s steps(4) infinite;
+  }
+
+  @keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-5%, -10%); }
+    20% { transform: translate(-15%, 5%); }
+    30% { transform: translate(7%, -15%); }
+    40% { transform: translate(-5%, 15%); }
+    50% { transform: translate(-10%, 5%); }
+    60% { transform: translate(15%, 0%); }
+    70% { transform: translate(0%, 10%); }
+    80% { transform: translate(-15%, 0%); }
+    90% { transform: translate(10%, 10%); }
   }
 }
 
 @layer components {
-  .container {
-    @apply max-w-2xl w-full;
+  /* Vintage Card Base */
+  .vintage-card {
+    @apply relative bg-vintage-paper border-4 border-vintage-smoke p-6 rounded-sm;
+    @apply shadow-vintage-deep;
+
+    /* Torn edge effect with CSS clip-path */
+    clip-path: polygon(
+      0% 2%, 2% 0%, 5% 1%, 8% 0%, 12% 2%, 15% 0%, 18% 1%,
+      22% 0%, 25% 2%, 28% 1%, 32% 0%, 35% 2%, 38% 1%,
+      98% 0%, 100% 2%, 99% 5%, 100% 8%, 98% 12%, 100% 15%,
+      99% 18%, 100% 22%, 98% 25%, 99% 28%, 100% 32%, 98% 35%,
+      100% 98%, 98% 100%, 95% 99%, 92% 100%, 88% 98%, 85% 100%,
+      82% 99%, 78% 100%, 75% 98%, 72% 99%, 68% 100%, 65% 98%,
+      2% 100%, 0% 98%, 1% 95%, 0% 92%, 2% 88%, 0% 85%,
+      1% 82%, 0% 78%, 2% 75%, 1% 72%, 0% 68%, 2% 65%
+    );
   }
 
+  /* Vintage Button */
+  .vintage-btn {
+    @apply px-6 py-3 font-mono text-lg font-bold uppercase;
+    @apply bg-vintage-bloodRed text-vintage-paper border-2 border-vintage-midnight;
+    @apply shadow-vintage-deep;
+    @apply transition-all duration-200;
+    @apply cursor-pointer;
+
+    /* Stamp-like appearance */
+    transform: rotate(-1deg);
+  }
+
+  .vintage-btn:hover {
+    @apply bg-vintage-shockRed;
+    transform: rotate(1deg) scale(1.05);
+    box-shadow: 12px 12px 0 rgba(10,10,10,0.8);
+  }
+
+  .vintage-btn:active {
+    transform: rotate(0deg) scale(0.98);
+    box-shadow: 4px 4px 0 rgba(10,10,10,0.8);
+  }
+
+  /* Vintage Badge */
+  .vintage-badge {
+    @apply inline-block px-3 py-1 text-xs uppercase font-bold;
+    @apply bg-vintage-filmYellow text-vintage-midnight;
+    @apply border-2 border-vintage-midnight;
+    @apply shadow-sm;
+    transform: rotate(-2deg);
+  }
+
+  /* Horror Title Styling */
+  .horror-title {
+    @apply font-creepster text-6xl text-vintage-bloodRed;
+    text-shadow:
+      4px 4px 0 #000,
+      -2px -2px 0 #FFD700,
+      0 0 20px rgba(139, 0, 0, 0.5);
+    transform: rotate(-2deg);
+  }
+
+  /* Neon Number Effect (for countdown) */
+  .neon-number {
+    @apply font-mono text-vintage-shockRed;
+    text-shadow:
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 40px currentColor,
+      0 0 80px currentColor;
+    animation: flicker 3s infinite;
+  }
+
+  /* Typewriter Text Effect */
+  .typewriter-text {
+    overflow: hidden;
+    border-right: 3px solid;
+    white-space: nowrap;
+    animation: typewriter 3s steps(40) 1 normal both;
+  }
+
+  /* Film Reel Loading Spinner */
+  .film-reel-loader {
+    @apply inline-block w-16 h-16 border-8 border-vintage-smoke border-t-vintage-bloodRed rounded-full;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Container */
+  .container {
+    @apply max-w-2xl w-full mx-auto p-5;
+  }
+
+  /* Header */
   header {
     @apply text-center mb-8;
   }
 
   header h1 {
-    @apply text-5xl font-bold mb-2;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5), 0 0 20px rgba(123, 45, 141, 0.3);
+    @apply horror-title text-5xl sm:text-6xl mb-2;
   }
 
+  /* Main layout */
   main {
     @apply flex flex-col gap-6;
   }
 
+  /* Today Banner */
   .today-banner {
-    @apply bg-gradient-to-br from-spooky-blood to-spooky-blood-light;
-    @apply p-8 rounded-2xl text-center;
-    @apply shadow-2xl animate-pulse-slow;
-    box-shadow: 0 10px 40px rgba(139, 0, 0, 0.5), 0 0 60px rgba(139, 0, 0, 0.3);
+    @apply vintage-card;
+    @apply bg-gradient-to-br from-vintage-bloodRed to-vintage-shockRed;
+    @apply text-vintage-paper text-center;
+    @apply animate-flicker;
+    box-shadow: 0 10px 40px rgba(139, 0, 0, 0.7), 0 0 60px rgba(220, 20, 60, 0.5);
   }
 
   .today-banner h2 {
-    @apply text-3xl mb-2 font-bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    @apply text-3xl mb-2 font-bold font-creepster;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   }
 
   .current-date {
     @apply text-xl font-medium opacity-95;
   }
 
+  /* Info & Stats Cards */
   .info-card, .stats-card {
-    @apply bg-spooky-primary/40 backdrop-blur-lg;
-    @apply p-8 rounded-2xl;
-    @apply border border-spooky-purple/30;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px rgba(123, 45, 141, 0.2);
-    @apply transition-all duration-300 hover:border-spooky-purple/50;
+    @apply vintage-card;
+    @apply transition-all duration-300;
   }
 
   .info-card:hover, .stats-card:hover {
-    @apply animate-spooky-glow;
+    transform: scale(1.02) rotate(-1deg);
   }
 
   .info-card h3, .stats-card h3 {
-    @apply text-xl mb-4 text-spooky-orange-light font-semibold;
-    text-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+    @apply text-xl mb-4 text-vintage-bloodRed font-bold font-creepster;
+    text-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
   }
 
   .next-date {
-    @apply text-3xl font-bold mb-2 text-spooky-moon;
+    @apply text-3xl font-bold mb-2 text-vintage-midnight;
     text-shadow: 0 0 15px rgba(244, 241, 222, 0.4);
   }
 
   .days-away {
-    @apply text-lg text-spooky-orange font-medium;
+    @apply text-lg text-vintage-sepia font-medium;
   }
 
   .stat-number {
-    @apply text-7xl font-bold text-center text-spooky-moon leading-none mb-2;
-    text-shadow: 0 0 30px rgba(244, 241, 222, 0.5);
+    @apply text-7xl font-mono font-bold text-center text-vintage-shockRed leading-none mb-2;
+    @apply neon-number;
     @apply animate-float;
   }
 
   .stat-label {
-    @apply text-center text-lg text-spooky-orange mb-6;
+    @apply text-center text-lg text-vintage-sepia mb-6 font-bold uppercase tracking-wider;
   }
 
   .year-dates {
@@ -90,32 +220,43 @@
   }
 
   .year-date {
-    @apply bg-spooky-purple/30 backdrop-blur-sm;
-    @apply px-4 py-2 rounded-lg;
-    @apply text-sm font-medium;
-    @apply border border-spooky-purple/40;
+    @apply vintage-badge;
     @apply transition-all duration-200;
-    @apply hover:bg-spooky-purple/50 hover:scale-105;
+    @apply hover:scale-110;
   }
 
+  /* Fun Fact / Trivia */
   .fun-fact {
-    @apply bg-spooky-secondary/30 backdrop-blur-sm;
-    @apply p-6 rounded-xl;
-    @apply border-l-4 border-spooky-orange;
+    @apply vintage-card;
+    @apply border-l-8 border-vintage-bloodRed;
     @apply italic text-sm leading-relaxed;
-    @apply text-spooky-ghost/90;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    @apply text-vintage-smoke;
   }
 
+  /* Footer */
   footer {
     @apply text-center mt-8 pt-8;
-    @apply border-t border-spooky-ghost/10;
-    @apply opacity-70 text-sm;
+    @apply border-t-4 border-vintage-smoke/30;
+    @apply opacity-70 text-sm text-vintage-ash;
   }
 }
 
 @layer utilities {
+  /* Text shadows for depth */
+  .text-shadow-horror {
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+  }
+
+  .text-shadow-glow {
+    text-shadow: 0 0 20px currentColor;
+  }
+
+  /* Responsive typography adjustments */
   @media (max-width: 640px) {
+    .horror-title {
+      @apply text-4xl;
+    }
+
     header h1 {
       @apply text-4xl;
     }
@@ -133,7 +274,7 @@
     }
 
     .info-card, .stats-card, .today-banner {
-      @apply p-6;
+      @apply p-4;
     }
   }
 }

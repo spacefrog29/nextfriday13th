@@ -3,7 +3,10 @@
     "allow": [
       "Bash(dir)",
       "Bash(npm install:*)",
-      "Bash(npm uninstall:*)"
+      "Bash(npm uninstall:*)",
+      "Skill(example-skills:frontend-design)",
+      "Bash(cat:*)",
+      "Bash(npm run dev:*)"
     ],
     "deny": [],
     "ask": []
