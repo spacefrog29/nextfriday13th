@@ -118,10 +118,8 @@
   .neon-number {
     @apply font-mono text-vintage-shockRed;
     text-shadow:
-      0 0 10px currentColor,
-      0 0 20px currentColor,
-      0 0 40px currentColor,
-      0 0 80px currentColor;
+      2px 2px 4px rgba(0, 0, 0, 0.5),
+      0 0 8px rgba(220, 20, 60, 0.3);
     animation: flicker 3s infinite;
   }
 
