@@ -6,7 +6,8 @@
       "Bash(npm uninstall:*)",
       "Skill(example-skills:frontend-design)",
       "Bash(cat:*)",
-      "Bash(npm run dev:*)"
+      "Bash(npm run dev:*)",
+      "Bash(timeout /t 3)"
     ],
     "deny": [],
     "ask": []
